@@ -1,26 +1,30 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import WebpackDevServer from 'webpack-dev-server';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
-import webpackConfig from '../webpack.config.babel';
-import { Config } from './config';
-import { logWebpackDevServerConfig } from './logger';
+const WebpackDevServer = require('webpack-dev-server');
+const webpack = require('webpack');
 
-webpackConfig.entry.unshift(
-  `webpack-dev-server/client?http://${Config.host}:${Config.webpackPort}/`
-);
+const webpackConfig = require('../webpack.config');
+
 const compiler = webpack(webpackConfig);
 
-export default () => {
+module.exports = function initWebpackDevServer() {
   const server = new WebpackDevServer(compiler, {
-    contentBase: 'build/',
+    contentBase: './build',
     publicPath: webpackConfig.output.publicPath,
-    // hot: true,
+    hot: true,
     historyApiFallback: true,
     proxy: {
-      '/api/*': `http://${Config.host}:${Config.apiPort}`,
+      '/api/*': 'http://localhost:3000',
+    },
+    stats: {
+      colors: true,
+      chunks: false,
     },
   });
 
-  server.listen(Config.webpackPort, Config.host, logWebpackDevServerConfig);
+  server.listen(3001, 'localhost', function cb(err, result) {
+    if (err) {
+      return console.log(err);
+    }
+
+    console.log('WebpackDevServer listening at http://localhost:3001');
+  });
 };
