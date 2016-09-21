@@ -9,12 +9,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PATHS = {
   src: path.join(__dirname, 'src', 'client'), // client folder
   build: path.join(__dirname, 'build'),
-  styles: path.join(__dirname, 'src', 'client', 'components', 'main.css'),
+  styles: [
+    path.join(__dirname, 'src', 'client', 'components', 'main.css'),
+    path.join(__dirname, 'node_modules', 'react-spinkit')
+  ],
 };
 
 const CommonConfig = {
   entry: {
-    style: PATHS.style,
+    style: PATHS.styles,
     index: [path.join(PATHS.src, 'index.jsx')],
   },
   output: {
@@ -120,7 +123,7 @@ switch (process.env.npm_lifecycle_event) {
             {
               test: /\.css$/,
               loaders: ['style', 'css'],
-              include: PATHS.src,
+              include: PATHS.styles,
             },
           ],
         },
