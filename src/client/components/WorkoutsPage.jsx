@@ -1,32 +1,21 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import { renderDatePicker } from './helpers/FormComponents';
 import * as workoutActions from '../actions/workoutActions';
 
 class WorkoutsPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      workout: { date: null },
-    };
 
-    this.onDateChange = this.onDateChange.bind(this);
     this.onClickSave = this.onClickSave.bind(this);
   }
 
-  workoutRow(workout, index) {
-    return <div key={index}>{workout.date.toString()}</div>;
-  }
-
-  onDateChange(event, date) {
-    const workout = this.state.workout;
-    workout.date = date;
-    this.setState({ workout });
-  }
 
   onClickSave() {
     this.props.actions.createWorkout(this.state.workout);
@@ -34,19 +23,20 @@ class WorkoutsPage extends React.Component {
   }
 
   render() {
-    return (<div>
-      <h1>Workouts!!</h1>
-      {this.props.workouts.map(this.workoutRow)}
-      <h2>Add Workout</h2>
-      <DatePicker
-        value={this.state.workout.date}
-        onChange={this.onDateChange}
-      />
-      <RaisedButton
-        label="Save"
-        primary={true}
-        onClick={this.onClickSave}
-      />
+    return (<div className="wrapper">
+      <h1>Add Workout</h1>
+      <form className="wrapper">
+        <div>
+        <Field name="date" component={renderDatePicker} label="Workout Date" />
+        </div>
+        <div className="loadingButton">
+          <RaisedButton
+            label="Save"
+            primary
+            onClick={this.onClickSave}
+          />
+        </div>
+      </form>
     </div>);
   }
 }
@@ -69,4 +59,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkoutsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+  form: 'WorkoutForm',
+  initialValues: { date: new Date() },
+})(WorkoutsPage));

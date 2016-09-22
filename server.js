@@ -1,10 +1,10 @@
-const express = require('express');
-const http = require('http');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const userRoute = require('./src/api/routes/users');
-const webpackDevServer = require('./src/webpackDevServer');
+import express from 'express';
+import http from 'http';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import userRoute from './src/api/routes/users';
+import webpackDevServer from './src/webpackDevServer';
 
 const app = express();
 
@@ -18,10 +18,10 @@ app.use('/api/users', userRoute);
 
 webpackDevServer();
 const server = http.createServer(app);
-server.listen(3000, 'localhost', function(err, result) {
+server.listen(3000, 'localhost', (err) => {
   if (err) {
     return console.log(err);
   }
 
-  console.log('API server listening at http://localhost:3000');
+  return console.log('API server listening at http://localhost:3000');
 });

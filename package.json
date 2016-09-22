@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter progress test/testConfig.js \"test/*.js\"",
-    "start": "cross-env NODE_ENV=development nodemon --watch server.js --watch webpack.config.js server.js",
+    "start": "cross-env NODE_ENV=development nodemon --watch server.js --watch webpack.config.js --exec babel-node server.js --presets es2015,stage-0",
     "build": "cross-env NODE_ENV=production webpack"
   },
   "author": "tran.bao51093@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
@@ -39,6 +40,7 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
+    "co": "^4.6.0",
     "cors": "^2.8.1",
     "express": "^4.14.0",
     "http": "0.0.0",

@@ -2,7 +2,7 @@ a {
   text-decoration: none;
 }
 
-strong, h3 {
+strong, h3, h1 {
   color: #00bcd4;
   font-family: Roboto, sans-serif;
 }
