@@ -1,7 +1,7 @@
 {
-  "name": "workout_analys",
+  "name": "workout_bae",
   "version": "1.0.0",
-  "description": "",
+  "description": "workout diary",
   "main": "index.js",
   "scripts": {
     "test-api": "mocha --reporter spec test/testApiConfig.js \"test/api/**/*.test.js\"",

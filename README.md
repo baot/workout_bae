@@ -11,4 +11,4 @@ npm install
   * webpack dev server will be listened at port 3001
   * api server will be listened at port 3000
 
-* open browser: http://localhost:3000
+* open browser: http://localhost:3001
