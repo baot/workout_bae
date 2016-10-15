@@ -2,6 +2,7 @@
   "parser": "babel-eslint",
   "extends": ["airbnb"],
   "rules": {
-    "react/require-extension": "off"
+    "react/require-extension": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   }
 }

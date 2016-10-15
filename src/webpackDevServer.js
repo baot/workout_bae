@@ -1,11 +1,13 @@
-const WebpackDevServer = require('webpack-dev-server');
-const webpack = require('webpack');
+/* eslint no-console: 0 */
 
-const webpackConfig = require('../webpack.config');
+import WebpackDevServer from 'webpack-dev-server';
+import webpack from 'webpack';
+
+import webpackConfig from '../webpack.config';
 
 const compiler = webpack(webpackConfig);
 
-module.exports = function initWebpackDevServer() {
+export default function initWebpackDevServer() {
   const server = new WebpackDevServer(compiler, {
     contentBase: './build',
     publicPath: webpackConfig.output.publicPath,
@@ -20,11 +22,11 @@ module.exports = function initWebpackDevServer() {
     },
   });
 
-  server.listen(3001, 'localhost', function cb(err, result) {
+  server.listen(3001, 'localhost', (err) => {
     if (err) {
       return console.log(err);
     }
 
-    console.log('WebpackDevServer listening at http://localhost:3001');
+    return console.log('WebpackDevServer listening at http://localhost:3001');
   });
-};
+}

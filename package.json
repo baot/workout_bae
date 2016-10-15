@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter progress test/testConfig.js \"test/*.js\"",
+    "test-api": "mocha --reporter spec test/testApiConfig.js \"test/api/**/*.test.js\"",
+    "test": "mocha --reporter spec test/testConfig.js \"test/client/**/*.test.js\"",
     "start": "cross-env NODE_ENV=development nodemon --watch server.js --watch webpack.config.js --exec babel-node server.js --presets es2015,stage-0",
     "build": "cross-env NODE_ENV=production webpack"
   },
@@ -18,6 +19,7 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.16.3",
     "cross-env": "^2.0.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.5.0",
@@ -33,20 +35,22 @@
     "react-hot-loader": "^3.0.0-beta.4",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-",
-    "webpack-dev-server": "^2.1.0-",
+    "webpack-dev-server": "^1.16.2",
     "webpack-merge": "^0.14.1",
     "webpack-validator": "^2.2.7"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
-    "co": "^4.6.0",
     "cors": "^2.8.1",
     "express": "^4.14.0",
     "http": "0.0.0",
     "lodash": "^4.16.1",
     "material-ui": "^0.15.4",
+    "monet": "^0.8.10",
     "mongoose": "^4.6.0",
+    "morgan": "^1.7.0",
+    "ramda": "^0.22.1",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
@@ -57,7 +61,6 @@
     "redux": "^3.6.0",
     "redux-form": "^6.0.5",
     "redux-thunk": "^2.1.0",
-    "validator": "^5.7.0",
-    "winston": "^2.2.0"
+    "validator": "^5.7.0"
   }
 }
