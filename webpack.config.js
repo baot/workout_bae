@@ -10,7 +10,7 @@ const PATHS = {
   src: path.join(__dirname, 'src', 'client'), // client folder
   build: path.join(__dirname, 'build'),
   styles: [
-    path.join(__dirname, 'src', 'client', 'components', 'main.css'),
+    path.join(__dirname, 'src', 'client', 'components', 'styles', 'main.css'),
     path.join(__dirname, 'node_modules', 'react-spinkit')
   ],
 };
