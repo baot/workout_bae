@@ -1,6 +1,7 @@
 import { curry, flip, has, reduce, isEmpty, compose } from 'ramda';
 import { Either } from 'monet';
 import validator from 'validator';
+import bcrypt from 'bcrypt';
 
 //  chain :: Monad m => (a -> m b) -> m a -> m b
 const chain = curry((f, m) => {
@@ -38,6 +39,15 @@ const passwordMatch = (data) => {
   return Either.Right(data);
 };
 
+function comparePassword(pass, hash) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(pass, hash, (err, result) => {
+      if (err) { return reject(err); }
+      return result ? resolve() : reject(new Error('not match'));
+    });
+  });
+}
+
 const validateInput = compose(chain(passwordMatch), chain(isEmail), requiredFields(['email', 'password', 'passwordConfirm']));
 
-export { requiredFields, isEmail, passwordMatch, validateInput };
+export { requiredFields, isEmail, passwordMatch, validateInput, comparePassword };

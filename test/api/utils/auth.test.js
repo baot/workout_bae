@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { Either } from 'monet';
 
-import { requiredFields, isEmail, passwordMatch, validateInput } from '../../../src/api/utils/auth';
+import { requiredFields, isEmail, passwordMatch, validateInput, comparePassword } from '../../../src/api/utils/auth';
 
 describe('utils auth test', () => {
   describe('requiredFields test', () => {
@@ -127,6 +127,30 @@ describe('utils auth test', () => {
       expect(result).toEqual(Either.Left({
         passwordConfirm: 'passwords must mach',
       }));
+    });
+  });
+
+  describe('comparePassword test', () => {
+    it('comparePassword should pass', () => {
+      const comparePwd = comparePassword('test', '$2a$10$Tf2NR.lGaShpMUQwEO5TxuIKjQ2Vw.qEY5HFrhCoSR6beyiAzmt6O');
+      return comparePwd
+        .then((resp) => {
+          expect(resp).toNotExist();
+        })
+        .catch(() => {
+          throw new Error('shouldnt be thrown');
+        });
+    });
+
+    it('comparePassword should fail', () => {
+      const comparePwd = comparePassword('test', 'falseHash');
+      return comparePwd
+        .then(() => {
+          throw new Error('shouldnt be success');
+        })
+        .catch((e) => {
+          expect(e).toEqual(new Error('not match'));
+        });
     });
   });
 });

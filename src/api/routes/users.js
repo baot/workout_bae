@@ -1,10 +1,8 @@
 import express from 'express';
 import validator from 'validator';
-import {} from 'ramda';
-import bcrypt from 'bcrypt';
 
 import jwt from '../services/jwt';
-import { validateInput } from '../utils/auth';
+import { validateInput, comparePassword } from '../utils/auth';
 import User from '../models/User';
 
 let router = express.Router();
