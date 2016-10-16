@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route } from 'react-router';
 
-import WorkoutsPage from './components/WorkoutsPage';
-import SignUp from './components/SignUp';
-import App from './components/App';
-import Login from './components/Login';
+import WorkoutsPage from './components/workout/WorkoutsPage';
+import SignUp from './components/signup/SignUp';
+import App from './components/common/App';
+import Login from './components/login/Login';
 
 export default (
   <Route path="/" component={App}>

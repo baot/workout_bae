@@ -6,7 +6,7 @@ import Routes from '../routes';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import './main.css';
+import './styles/main.css';
 
 const muiTheme = getMuiTheme({});
 
