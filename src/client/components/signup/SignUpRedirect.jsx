@@ -4,7 +4,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 
 class SignUpRedirect extends Component {
   componentDidMount() {
-    setTimeout(() => browserHistory.push('/login'), 3000);
+    setTimeout(() => browserHistory.push('/login'), 1000);
   }
 
   render() {
